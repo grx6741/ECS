@@ -1,0 +1,8 @@
+[
+  {
+    "directory": "/home/grx/Projects/ECS/build",
+    "command": "ccache c++ -Imain.p -I. -I.. -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -O0 -g -MD -MQ main.p/main.cpp.o -MF main.p/main.cpp.o.d -o main.p/main.cpp.o -c ../main.cpp",
+    "file": "../main.cpp",
+    "output": "main.p/main.cpp.o"
+  }
+]
