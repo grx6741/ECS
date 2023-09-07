@@ -2,6 +2,7 @@
 
 set -xe
 
+clear
 cd build
 meson compile
 cd ..
