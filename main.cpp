@@ -57,14 +57,27 @@ class RendererSystem : public ECS::System {
             TransformComponent* t = transforms->getItem(i);
             float size = t->scale.magnitude();
 
-            if (t->position.x < size || t->position.x > WIDTH - size) t->velocity.x *= -1;
-            if (t->position.y < size || t->position.y > HEIGHT - size) t->velocity.y *= -1;
+            if (t->position.x < size || t->position.x > WIDTH - size) 
+            {
+                t->velocity.x *= -1;
+                transforms->deleteItem(t->id);
+            }
+            if (t->position.y < size || t->position.y > HEIGHT - size) 
+            {
+                t->velocity.y *= -1;
+                transforms->deleteItem(t->id);
+            }
+            // std::cout<<transforms->getActiveItems()<<std::endl;
 
             t->position.x += t->velocity.x * dt;
             t->position.y += t->velocity.y * dt;
             t->position.z += t->velocity.z * dt;
 
+<<<<<<< HEAD
             //DrawCircle(t->position.x, t->position.y, size, BLUE);
+=======
+            // DrawCircle(t->position.x, t->position.y, 1.5, BLUE);
+>>>>>>> refs/remotes/origin/main
         }
     }
 };
@@ -98,8 +111,7 @@ int main() {
             ECS::System::updateAllSystems(GetFrameTime());
         }
         EndDrawing();
-        //SetWindowTitle(std::to_string(GetFPS()).c_str());
-        std::cout << GetFPS() << std::endl;
+        std::cout << GetFPS() <<std::endl;
     }
 
     // ECS::closeECS();

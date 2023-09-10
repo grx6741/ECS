@@ -1,22 +1,32 @@
-==106291== Memcheck, a memory error detector
-==106291== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
-==106291== Using Valgrind-3.21.0 and LibVEX; rerun with -h for copyright info
-==106291== Command: ./build/main
-==106291== Parent PID: 38724
-==106291== 
-==106291== 
-==106291== HEAP SUMMARY:
-==106291==     in use at exit: 2,640,000 bytes in 60,000 blocks
-==106291==   total heap usage: 60,011 allocs, 11 frees, 103,378,200 bytes allocated
-==106291== 
-==106291== LEAK SUMMARY:
-==106291==    definitely lost: 0 bytes in 0 blocks
-==106291==    indirectly lost: 0 bytes in 0 blocks
-==106291==      possibly lost: 0 bytes in 0 blocks
-==106291==    still reachable: 2,640,000 bytes in 60,000 blocks
-==106291==         suppressed: 0 bytes in 0 blocks
-==106291== Reachable blocks (those to which a pointer was found) are not shown.
-==106291== To see them, rerun with: --leak-check=full --show-leak-kinds=all
-==106291== 
-==106291== For lists of detected and suppressed errors, rerun with: -s
-==106291== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==34829== Memcheck, a memory error detector
+==34829== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==34829== Using Valgrind-3.21.0 and LibVEX; rerun with -h for copyright info
+==34829== Command: ./build/main
+==34829== Parent PID: 1621
+==34829== 
+==34829== 
+==34829== Process terminating with default action of signal 2 (SIGINT)
+==34829==    at 0x10E05B: construct<std::pair<long unsigned int const, std::vector<long unsigned int> >, const std::piecewise_construct_t&, std::tuple<long unsigned int&&>, std::tuple<> > (new_allocator.h:187)
+==34829==    by 0x10E05B: construct<std::pair<long unsigned int const, std::vector<long unsigned int> >, const std::piecewise_construct_t&, std::tuple<long unsigned int&&>, std::tuple<> > (alloc_traits.h:537)
+==34829==    by 0x10E05B: std::__detail::_Hash_node<std::pair<unsigned long const, std::vector<unsigned long, std::allocator<unsigned long> > >, false>* std::__detail::_Hashtable_alloc<std::allocator<std::__detail::_Hash_node<std::pair<unsigned long const, std::vector<unsigned long, std::allocator<unsigned long> > >, false> > >::_M_allocate_node<std::piecewise_construct_t const&, std::tuple<unsigned long&&>, std::tuple<> >(std::piecewise_construct_t const&, std::tuple<unsigned long&&>&&, std::tuple<>&&) (hashtable_policy.h:2004)
+==34829==    by 0x10D3B2: std::_Hashtable<unsigned long, std::pair<unsigned long const, std::vector<unsigned long, std::allocator<unsigned long> > >, std::allocator<std::pair<unsigned long const, std::vector<unsigned long, std::allocator<unsigned long> > > >, std::__detail::_Select1st, std::equal_to<unsigned long>, std::hash<unsigned long>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, false, true> >::_Scoped_node::_Scoped_node<std::piecewise_construct_t const&, std::tuple<unsigned long&&>, std::tuple<> >(std::__detail::_Hashtable_alloc<std::allocator<std::__detail::_Hash_node<std::pair<unsigned long const, std::vector<unsigned long, std::allocator<unsigned long> > >, false> > >*, std::piecewise_construct_t const&, std::tuple<unsigned long&&>&&, std::tuple<>&&) (hashtable.h:307)
+==34829==    by 0x10C88F: std::__detail::_Map_base<unsigned long, std::pair<unsigned long const, std::vector<unsigned long, std::allocator<unsigned long> > >, std::allocator<std::pair<unsigned long const, std::vector<unsigned long, std::allocator<unsigned long> > > >, std::__detail::_Select1st, std::equal_to<unsigned long>, std::hash<unsigned long>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, false, true>, true>::operator[](unsigned long&&) (hashtable_policy.h:841)
+==34829==    by 0x10BE51: std::unordered_map<unsigned long, std::vector<unsigned long, std::allocator<unsigned long> >, std::hash<unsigned long>, std::equal_to<unsigned long>, std::allocator<std::pair<unsigned long const, std::vector<unsigned long, std::allocator<unsigned long> > > > >::operator[](unsigned long&&) (unordered_map.h:991)
+==34829==    by 0x10B756: void ECS::Entity::addComponent<TransformComponent>() (ECS2.h:152)
+==34829==    by 0x10A36C: main (main.cpp:80)
+==34829== 
+==34829== HEAP SUMMARY:
+==34829==     in use at exit: 200,653,872 bytes in 2,270,842 blocks
+==34829==   total heap usage: 2,270,844 allocs, 2 frees, 200,653,888 bytes allocated
+==34829== 
+==34829== LEAK SUMMARY:
+==34829==    definitely lost: 0 bytes in 0 blocks
+==34829==    indirectly lost: 0 bytes in 0 blocks
+==34829==      possibly lost: 0 bytes in 0 blocks
+==34829==    still reachable: 200,653,872 bytes in 2,270,842 blocks
+==34829==         suppressed: 0 bytes in 0 blocks
+==34829== Reachable blocks (those to which a pointer was found) are not shown.
+==34829== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==34829== 
+==34829== For lists of detected and suppressed errors, rerun with: -s
+==34829== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
