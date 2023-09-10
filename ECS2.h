@@ -25,7 +25,8 @@ private:
 
     std::size_t count;
     std::size_t end;
-    std::vector<std::size_t> deleted_items;
+    // std::vector<std::size_t> deleted_items;
+    std::unordered_set<std::size_t> deleted_items;
 
 public:
     tombStone(std::size_t count) : count(count), end(0) {
@@ -33,16 +34,15 @@ public:
     }
 
     template<int I>
-    tombStone()
-    {
-        
-    }
+    tombStone() {}
 
     ~tombStone() {
         std::free(this->items);
     }
 
     inline std::size_t getSize() { return end; }
+    
+    inline std::size_t getActiveItems(){ return end-deleted_items.size();}
 
     inline std::size_t addItem() {
         if (deleted_items.empty()) {
@@ -50,8 +50,8 @@ public:
             return this->end++;
         }
 
-        std::size_t last = deleted_items[deleted_items.size()-1];
-        this->deleted_items.pop_back();
+        std::size_t last = (deleted_items.extract(deleted_items.begin())).value();
+        // this->deleted_items.pop_back();
         return last;
     }
 
@@ -60,10 +60,13 @@ public:
     }
 
     inline void deleteItem(std::size_t index) {
-        if (!isItemDeleted(index))
-            return;
+
+        // if (isItemDeleted(index))
+        //     return;
+        // std::cout<<"deleted"<<std::endl;
         if (index < this->count)
-            this->deleted_items.push_back(index);
+            this->deleted_items.insert(index);
+
     }
 
     inline T* getItem(std::size_t index) {
