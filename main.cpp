@@ -2,7 +2,7 @@
 #include <cstdint>
 #include <cmath>
 #include <iostream>
-//#include <raylib.h>
+#include <raylib.h>
 #include <vector>
 
 #include "ECS2.h"
@@ -38,15 +38,15 @@ class RendererSystem : public ECS::System {
             TransformComponent* t = transforms->getItem(i);
             float size = 0.41;
             t->scale = {size, size, size};
-            // t->position = {
-            //     static_cast<float>(GetRandomValue(size, WIDTH - size)), 
-            //     static_cast<float>(GetRandomValue(size, HEIGHT - size)), 0}
-            // ;
-            // t->velocity = {
-            //     static_cast<float>(40 * GetRandomValue(-10, 10)),
-            //     static_cast<float>(40 * GetRandomValue(-10, 10)),
-            //     0
-            // };
+            t->position = {
+                static_cast<float>(GetRandomValue(size, WIDTH - size)), 
+                static_cast<float>(GetRandomValue(size, HEIGHT - size)), 0
+            };
+            t->velocity = {
+                static_cast<float>(40 * GetRandomValue(-10, 10)),
+                static_cast<float>(40 * GetRandomValue(-10, 10)),
+                0
+            };
             t->rotation = {0, 0, 0};
         }
     }
@@ -60,7 +60,7 @@ class RendererSystem : public ECS::System {
             t->position.z += t->velocity.z * dt;
 
             float size = t->scale.magnitude();
-            // DrawCircle(t->position.x, t->position.y, size, BLUE);
+            DrawCircle(t->position.x, t->position.y, size, BLUE);
         }
     }
 };
@@ -76,31 +76,29 @@ int main() {
     }
 
     ECS::System::initAllSystems();
-    ECS::System::updateAllSystems(0);
-
-    ECS::Registry::FreeRegistry();
     
     // for (size_t i = 0; i < entities.size(); i++) {
     //     ECS::deleteEntity(entities[i]);
     // }
 
 
-    // InitWindow(WIDTH, HEIGHT, "ECS Demonstration");
+    InitWindow(WIDTH, HEIGHT, "ECS Demonstration");
 
-    // SetTargetFPS(60);
+    //SetTargetFPS(60);
 
-    // while (!WindowShouldClose()) {
-    //     BeginDrawing();
-    //     {
-    //         //DrawCircleV(Vector2({WIDTH/2, HEIGHT/2}), 50, RED);
-    //         ClearBackground(BLACK);
-    //     }
-    //     EndDrawing();
-    //     SetWindowTitle(std::to_string(GetFPS()).c_str());
-    // }
+    while (!WindowShouldClose()) {
+        BeginDrawing();
+        {
+            //DrawCircleV(Vector2({WIDTH/2, HEIGHT/2}), 50, RED);
+            ClearBackground(BLACK);  
+            ECS::System::updateAllSystems(GetFrameTime());
+        }
+        EndDrawing();
+        SetWindowTitle(std::to_string(GetFPS()).c_str());
+    }
 
     // ECS::closeECS();
-
-    // CloseWindow();
+    ECS::Registry::FreeRegistry();
+    CloseWindow();
     
 }
