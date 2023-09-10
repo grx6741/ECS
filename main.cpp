@@ -17,7 +17,7 @@ struct vec3 {
     }
 };
 
-std::array<ECS::Entity*, 10000> entities;
+std::array<ECS::Entity*, 20000> entities;
 
 struct TransformComponent : public ECS::Component {
     vec3 position;
@@ -98,7 +98,8 @@ int main() {
             ECS::System::updateAllSystems(GetFrameTime());
         }
         EndDrawing();
-        SetWindowTitle(std::to_string(GetFPS()).c_str());
+        //SetWindowTitle(std::to_string(GetFPS()).c_str());
+        std::cout << GetFPS() << std::endl;
     }
 
     // ECS::closeECS();
