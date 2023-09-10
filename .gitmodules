@@ -1,0 +1,3 @@
+[submodule "heapArray"]
+	path = heapArray
+	url = git@github.com:grx6741/heapArray.git
