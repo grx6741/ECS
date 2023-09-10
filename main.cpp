@@ -55,11 +55,15 @@ class RendererSystem : public ECS::System {
         auto transforms = ECS::Registry::getTombStone<TransformComponent>();
         for (int i = 0; i < transforms->getSize(); i++) {
             TransformComponent* t = transforms->getItem(i);
+            float size = t->scale.magnitude();
+
+            if (t->position.x < size || t->position.x > WIDTH - size) t->velocity.x *= -1;
+            if (t->position.y < size || t->position.y > HEIGHT - size) t->velocity.y *= -1;
+
             t->position.x += t->velocity.x * dt;
             t->position.y += t->velocity.y * dt;
             t->position.z += t->velocity.z * dt;
 
-            float size = t->scale.magnitude();
             DrawCircle(t->position.x, t->position.y, size, BLUE);
         }
     }
