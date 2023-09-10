@@ -2,6 +2,7 @@
 
 #include <cstddef>
 #include <cstdint>
+#include <iostream>
 #include <optional>
 #include <stack>
 #include <typeinfo>
@@ -29,6 +30,12 @@ private:
 public:
     tombStone(std::size_t count) : count(count), end(0) {
         this->items = (T*)std::calloc(this->count, sizeof(T));
+    }
+
+    template<int I>
+    tombStone()
+    {
+        
     }
 
     ~tombStone() {
@@ -96,7 +103,9 @@ public:
 
     static inline void FreeRegistry() {
         for (auto a : Registry::componentTypes)
-            std::free(a);
+        {
+            delete (DS::tombStone<int>*)a;
+        }
     }
 };
 
@@ -114,7 +123,7 @@ struct Component : BaseComponent {
         )
             return;
 
-        auto ts = malloc(DS::tombStone<T>(MAX_COUNT_PER_COMPONENT));
+        auto ts = new DS::tombStone<T>(MAX_COUNT_PER_COMPONENT);
         Registry::registererdComponentTypes.push_back(hash);
         Registry::componentTypes.push_back(ts);
     }
