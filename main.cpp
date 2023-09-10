@@ -17,7 +17,7 @@ struct vec3 {
     }
 };
 
-std::array<ECS::Entity*, 20000> entities;
+std::array<ECS::Entity*, 1000000> entities;
 
 struct TransformComponent : public ECS::Component {
     vec3 position;
@@ -64,7 +64,7 @@ class RendererSystem : public ECS::System {
             t->position.y += t->velocity.y * dt;
             t->position.z += t->velocity.z * dt;
 
-            DrawCircle(t->position.x, t->position.y, size, BLUE);
+            //DrawCircle(t->position.x, t->position.y, size, BLUE);
         }
     }
 };
