@@ -4,6 +4,8 @@ raylib_dep = dependency('raylib')
 
 sources = files('main.cpp')
 
+include_directories('.')
+
 executable(
   'main', 
   sources, 

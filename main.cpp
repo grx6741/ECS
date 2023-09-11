@@ -73,11 +73,7 @@ class RendererSystem : public ECS::System {
             t->position.y += t->velocity.y * dt;
             t->position.z += t->velocity.z * dt;
 
-<<<<<<< HEAD
             //DrawCircle(t->position.x, t->position.y, size, BLUE);
-=======
-            // DrawCircle(t->position.x, t->position.y, 1.5, BLUE);
->>>>>>> refs/remotes/origin/main
         }
     }
 };
