@@ -6,6 +6,10 @@ sources = files('main.cpp')
 
 incdir = include_directories('.')
 
+ecs_dep = declare_dependency(
+    include_directories: include_directories('.')
+)
+
 executable(
   'main', 
   sources, 
