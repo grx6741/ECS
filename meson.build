@@ -4,11 +4,12 @@ raylib_dep = dependency('raylib')
 
 sources = files('main.cpp')
 
-include_directories('.')
+incdir = include_directories('.')
 
 executable(
   'main', 
   sources, 
   dependencies : [raylib_dep],
-  override_options : ['c_std=c17']
+  override_options : ['c_std=c17'],
+  include_directories : incdir
   )
