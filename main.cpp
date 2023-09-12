@@ -5,7 +5,7 @@
 #include <raylib.h>
 #include <vector>
 
-#include "ECS2.h"
+#include "ECS.h"
 
 #define WIDTH 1280
 #define HEIGHT 720
