@@ -34,7 +34,7 @@ struct ImageComponent : public ECS::Component {
 class RendererSystem : public ECS::System {
     void initSystem() override {
         auto transforms = ECS::Registry::getTombStone<TransformComponent>();
-        for (int i = 0; i < transforms->getSize(); i++) {
+        for (std::size_t i = 0; i < transforms->getSize(); i++) {
             TransformComponent* t = transforms->getItem(i);
             float size = 0.41;
             t->scale = {size, size, size};
@@ -53,7 +53,7 @@ class RendererSystem : public ECS::System {
 
     void updateSystem(float dt) override {
         auto transforms = ECS::Registry::getTombStone<TransformComponent>();
-        for (int i = 0; i < transforms->getSize(); i++) {
+        for (std::size_t i = 0; i < transforms->getSize(); i++) {
             TransformComponent* t = transforms->getItem(i);
             float size = t->scale.magnitude();
 

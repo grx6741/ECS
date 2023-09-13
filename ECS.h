@@ -46,7 +46,7 @@ public:
 
     inline std::size_t addItem() {
         if (deleted_items.empty()) {
-            T* comp = new(this->items + this->end) T();
+            new(this->items + this->end) T();
             return this->end++;
         }
 
