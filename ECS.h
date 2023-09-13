@@ -159,8 +159,13 @@ public:
     };
 
     template<typename T>
-    inline T* getComponents() {
-        return components[typeid(T).hash_code()];
+    inline std::vector<T*> getComponents() {
+        auto ids = components[typeid(T).hash_code()];
+        std::vector<T*> comps;
+        for (auto id : ids) {
+            comps.push_back(Registry::getTombStone<T>()->getItem(id));
+        }
+        return comps;
     }
 };
 
